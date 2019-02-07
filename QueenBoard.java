@@ -9,7 +9,7 @@ public class QueenBoard {
   
   public boolean addQueen(int r, int c) {
 	if(board[r][c] == 0) {
-		board[r][c] == -1;
+		board[r][c] = -1;
 		markSpots(r,c,1);
 		return true;
 	}
@@ -20,7 +20,7 @@ public class QueenBoard {
   
   public boolean removeQueen(int r, int c) {
 	if(board[r][c] == -1) {
-		board[r][c] == 0;
+		board[r][c] = 0;
 		markSpots(r,c,-1);
 		return true;
 	}
@@ -65,8 +65,14 @@ public class QueenBoard {
   public static void main(String[] args) {
 	  QueenBoard board = new QueenBoard(6);
 	  System.out.println(board);
-	  board.markSpots(2,2,1);
-	  System.out.println(board);
+	  board.addQueen(2,2);
+	  System.out.println(board + "\n");
+	  board.addQueen(2,3);
+	  System.out.println(board + "\n");
+	  board.addQueen(4,3);
+	  System.out.println(board + "\n");
+	  board.removeQueen(2,2);
+	  System.out.println(board + "\n");
   }
 
 
