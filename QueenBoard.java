@@ -53,10 +53,20 @@ public class QueenBoard {
   }
   
   public void solveH(ArrayList<int[][]> ary,int r,int c) {
-	if(board[r][c] == 0 && c == board.length-1) {
+	if(board[r][c] == 0 && c == board.length-1 && r<board.length) {
 		addQueen(r,c);
 		ary.add(copy(board));
+		removeQueen(r,c);
+		solveH(ary,r+1,c);
 	}
+	if(board[r][c] == 0 && c != board.length-1 && r<board.length) {
+		addQueen(r,c);
+		solveH(ary,0,c+1);
+		removeQueen(r,c);
+		solveH(ary,r+1,c);
+	}
+	
+	
 	  
   }
   
