@@ -2,7 +2,9 @@ public class QueenBoard {
   private int[][] board;
 
   public QueenBoard(int size) {
-    board = new int[size][size];
+	if(size >= 0) {
+		board = new int[size][size];
+	}
   }
 
   private void markSpots(int r, int c, int shift) {
@@ -22,14 +24,19 @@ public class QueenBoard {
     String out = "";
     for(int r = 0;r<board.length;r++) {
       for(int c = 0;c<board[r].length;c++) {
-        
+        if(board[r][c] == -1) {
+			out += "Q ";
+		}
+		else {
+			out += board[r][c];
+		}
       }
+	  out += "\n";
     }
-
-
-
+	return out;
   }
 
+  
 
 
 
