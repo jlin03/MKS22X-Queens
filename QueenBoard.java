@@ -7,11 +7,11 @@ public class QueenBoard {
 	}
   }
 
-  private void markSpots(int r, int c, int shift) {
+  public void markSpots(int r, int c, int shift) {
     for(int s = 1;r+s >= 0 && r+s < board.length && c+s >= 0 && c+s < board[0].length;s++) {
       board[r+s][c+s] += shift;
     }
-    for(int s = 1;r+s >= 0 && r+s < board.length && c+s >= 0 && c+s < board[0].length;s++) {
+    for(int s = 1;r-s >= 0 && r-s < board.length && c+s >= 0 && c+s < board[0].length;s++) {
       board[r-s][c+s] += shift;
     }
     for(int s = 1;c+s >= 0 && c+s < board[0].length;s++) {
@@ -28,15 +28,22 @@ public class QueenBoard {
 			out += "Q ";
 		}
 		else {
-			out += board[r][c];
+			out += "_ ";
 		}
       }
-	  out += "\n";
+	  if(r != board.length-1) {
+		out += "\n";
+	  }
     }
 	return out;
   }
 
-  
+  public static void main(String[] args) {
+	  QueenBoard board = new QueenBoard(6);
+	  System.out.println(board);
+	  board.markSpots(2,2,1);
+	  System.out.println(board);
+  }
 
 
 
