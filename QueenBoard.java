@@ -6,6 +6,28 @@ public class QueenBoard {
 		board = new int[size][size];
 	}
   }
+  
+  public boolean addQueen(int r, int c) {
+	if(board[r][c] == 0) {
+		board[r][c] == -1;
+		markSpots(r,c,1);
+		return true;
+	}
+	else {
+		return false;
+	}
+  }
+  
+  public boolean removeQueen(int r, int c) {
+	if(board[r][c] == -1) {
+		board[r][c] == 0;
+		markSpots(r,c,-1);
+		return true;
+	}
+	else {
+		return false;
+	}
+  }
 
   public void markSpots(int r, int c, int shift) {
     for(int s = 1;r+s >= 0 && r+s < board.length && c+s >= 0 && c+s < board[0].length;s++) {
@@ -18,6 +40,8 @@ public class QueenBoard {
       board[r][c+s] += shift;
     }
   }
+  
+  
 
 
   public String toString() {
