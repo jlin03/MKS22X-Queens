@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class QueenBoard {
   private int[][] board;
 
@@ -40,6 +41,28 @@ public class QueenBoard {
       board[r][c+s] += shift;
     }
   }
+  
+  public int[][] copy(int[][] ary) {
+	int[][] out = new int[ary.length][ary.length];
+	for(int r = 0;r<ary.length;r++) {
+      for(int c = 0;c<ary[r].length;c++) {
+		out[r][c] = ary[r][c];
+	  }
+	}
+	return out;
+  }
+  
+  public void solveH(ArrayList<int[][]> ary,int r,int c) {
+	if(board[r][c] == 0 && c == board.length-1) {
+		addQueen(r,c);
+		ary.add(copy(board));
+	}
+	  
+  }
+  
+  //public boolean solve() {
+	  
+  //}
   
   
 
