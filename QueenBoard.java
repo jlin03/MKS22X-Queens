@@ -18,7 +18,17 @@ public class QueenBoard {
   }
 
 
+  public String toString() {
+    String out = "";
+    for(int r = 0;r<board.length;r++) {
+      for(int c = 0;c<board[r].length;c++) {
+        
+      }
+    }
 
+
+
+  }
 
 
 
