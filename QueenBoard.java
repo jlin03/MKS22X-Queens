@@ -86,6 +86,12 @@ public class QueenBoard {
     }
   }
 
+  public int countSolutions() {
+    ArrayList<int[][]> solutions =  new ArrayList<int[][]>();
+    solveH(solutions,0,0);
+    return solutions.size();
+  }
+
 
 
 
