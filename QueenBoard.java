@@ -7,7 +7,7 @@ public class QueenBoard {
 		board = new int[size][size];
 	}
   }
-  
+
   public boolean addQueen(int r, int c) {
 	if(board[r][c] == 0) {
 		board[r][c] = -1;
@@ -18,7 +18,7 @@ public class QueenBoard {
 		return false;
 	}
   }
-  
+
   public boolean removeQueen(int r, int c) {
 	if(board[r][c] == -1) {
 		board[r][c] = 0;
@@ -41,7 +41,7 @@ public class QueenBoard {
       board[r][c+s] += shift;
     }
   }
-  
+
   public int[][] copy(int[][] ary) {
 	int[][] out = new int[ary.length][ary.length];
 	for(int r = 0;r<ary.length;r++) {
@@ -51,7 +51,7 @@ public class QueenBoard {
 	}
 	return out;
   }
-  
+
   public void solveH(ArrayList<int[][]> ary,int r,int c) {
 	if(board[r][c] == 0 && c == board.length-1 && r<board.length) {
 		addQueen(r,c);
@@ -65,16 +65,24 @@ public class QueenBoard {
 		removeQueen(r,c);
 		solveH(ary,r+1,c);
 	}
-	
-	
-	  
+  if(board[r][c] != 0) {
+    solveH(ary,r+1,c);
   }
-  
-  //public boolean solve() {
-	  
-  //}
-  
-  
+  }
+
+  public boolean solve() {
+	  ArrayList<int> solutions =  new ArrayList<int>();
+    solveH(solutions,0,0);
+    if(solutions.size() > 0) {
+      board =  solutions.get(0);
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+
 
 
   public String toString() {
