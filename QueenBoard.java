@@ -55,7 +55,7 @@ public class QueenBoard {
   public void solveH(ArrayList<int[][]> ary,int r,int c) {
 	if(c == board.length-1 && r<board.length && board[r][c] == 0) {
 		addQueen(r,c);
-    System.out.println(this + "\n");
+		System.out.println(this + "\n");
 		ary.add(copy(board));
 		removeQueen(r,c);
 		solveH(ary,r+1,c);
@@ -64,17 +64,19 @@ public class QueenBoard {
 		addQueen(r,c);
 		solveH(ary,0,c+1);
 		removeQueen(r,c);
-    System.out.println(this + "\n");
+		System.out.println(this + "\n");
 		solveH(ary,r+1,c);
 	}
-  if(r<board.length && board[r][c] != 0) {
-    System.out.println(this + "\n");
-    solveH(ary,r+1,c);
-  }
+	if(r<board.length && board[r][c] != 0) {
+		System.out.println(this + "\n");
+		solveH(ary,r+1,c);
+	}
   }
 
   public boolean solve() {
-	  ArrayList<int[][]> solutions =  new ArrayList<int[][]>();
+	board = new int[board.length][board.length];
+	System.out.println(this);
+	ArrayList<int[][]> solutions =  new ArrayList<int[][]>();
     solveH(solutions,0,0);
     if(solutions.size() > 0) {
       board = solutions.get(0);
@@ -87,6 +89,8 @@ public class QueenBoard {
   }
 
   public int countSolutions() {
+	board = new int[board.length][board.length];
+	System.out.println(this);
     ArrayList<int[][]> solutions =  new ArrayList<int[][]>();
     solveH(solutions,0,0);
     return solutions.size();
@@ -114,10 +118,9 @@ public class QueenBoard {
   }
 
   public static void main(String[] args) {
-	  QueenBoard board = new QueenBoard(4);
-	  System.out.println(board.solve());
-    ArrayList<int[][]> solutions =  new ArrayList<int[][]>();
-    board.solveH(solutions,0,0);
+	QueenBoard board = new QueenBoard(9);
+	System.out.println(board.solve());
+	System.out.println(board.countSolutions());
 
   }
 
