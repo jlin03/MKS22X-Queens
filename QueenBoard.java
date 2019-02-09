@@ -6,6 +6,9 @@ public class QueenBoard {
 	if(size >= 0) {
 		board = new int[size][size];
 	}
+	else {
+		throw new NumberFormatException();
+	}
   }
 
   private boolean addQueen(int r, int c) {
@@ -90,9 +93,6 @@ public class QueenBoard {
     return solutions.size();
   }
 
-
-
-
   public String toString() {
     String out = "";
     for(int r = 0;r<board.length;r++) {
@@ -110,5 +110,5 @@ public class QueenBoard {
     }
 	return out;
   }
-
+  
 }
