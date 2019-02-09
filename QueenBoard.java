@@ -8,7 +8,7 @@ public class QueenBoard {
 	}
   }
 
-  public boolean addQueen(int r, int c) {
+  private boolean addQueen(int r, int c) {
 	if(board[r][c] == 0) {
 		board[r][c] = -1;
 		markSpots(r,c,1);
@@ -19,7 +19,7 @@ public class QueenBoard {
 	}
   }
 
-  public boolean removeQueen(int r, int c) {
+  private boolean removeQueen(int r, int c) {
 	if(board[r][c] == -1) {
 		board[r][c] = 0;
 		markSpots(r,c,-1);
@@ -30,7 +30,7 @@ public class QueenBoard {
 	}
   }
 
-  public void markSpots(int r, int c, int shift) {
+  private void markSpots(int r, int c, int shift) {
     for(int s = 1;r+s >= 0 && r+s < board.length && c+s >= 0 && c+s < board[0].length;s++) {
       board[r+s][c+s] += shift;
     }
@@ -42,7 +42,7 @@ public class QueenBoard {
     }
   }
 
-  public int[][] copy(int[][] ary) {
+  private int[][] copy(int[][] ary) {
 	int[][] out = new int[ary.length][ary.length];
 	for(int r = 0;r<ary.length;r++) {
       for(int c = 0;c<ary[r].length;c++) {
@@ -52,10 +52,9 @@ public class QueenBoard {
 	return out;
   }
 
-  public void solveH(ArrayList<int[][]> ary,int r,int c) {
+  private void solveH(ArrayList<int[][]> ary,int r,int c) {
 	if(c == board.length-1 && r<board.length && board[r][c] == 0) {
 		addQueen(r,c);
-		System.out.println(this + "\n");
 		ary.add(copy(board));
 		removeQueen(r,c);
 		solveH(ary,r+1,c);
@@ -64,23 +63,19 @@ public class QueenBoard {
 		addQueen(r,c);
 		solveH(ary,0,c+1);
 		removeQueen(r,c);
-		System.out.println(this + "\n");
 		solveH(ary,r+1,c);
 	}
 	if(r<board.length && board[r][c] != 0) {
-		System.out.println(this + "\n");
 		solveH(ary,r+1,c);
 	}
   }
 
   public boolean solve() {
 	board = new int[board.length][board.length];
-	System.out.println(this);
 	ArrayList<int[][]> solutions =  new ArrayList<int[][]>();
     solveH(solutions,0,0);
     if(solutions.size() > 0) {
       board = solutions.get(0);
-      System.out.println(this);
       return true;
     }
     else {
@@ -90,7 +85,6 @@ public class QueenBoard {
 
   public int countSolutions() {
 	board = new int[board.length][board.length];
-	System.out.println(this);
     ArrayList<int[][]> solutions =  new ArrayList<int[][]>();
     solveH(solutions,0,0);
     return solutions.size();
@@ -116,15 +110,5 @@ public class QueenBoard {
     }
 	return out;
   }
-
-  public static void main(String[] args) {
-	QueenBoard board = new QueenBoard(9);
-	System.out.println(board.solve());
-	System.out.println(board.countSolutions());
-
-  }
-
-
-
 
 }
